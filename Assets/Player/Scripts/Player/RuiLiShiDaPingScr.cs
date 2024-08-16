@@ -13,13 +13,13 @@ public class RuiLiShiDaPingScr : MonoBehaviour, UpdataCamera
         {
             RTSManager.UpdatePos = (RTSInfo, vectorRTS) =>
             {
-                RTSInfo.useRTSGO.transform.localPosition = new Vector3(vectorRTS.y + _infoConfig.CameraInfo.deltaX, vectorRTS.z + _infoConfig.CameraInfo.deltaY, -vectorRTS.x + _infoConfig.CameraInfo.deltaZ);
+                RTSInfo.useRTSGO.transform.localPosition = new Vector3(vectorRTS.y * _infoConfig.CameraInfo.deltaXDirection, vectorRTS.z * _infoConfig.CameraInfo.deltaYDirection, -vectorRTS.x * _infoConfig.CameraInfo.deltaZDirection) + new Vector3(_infoConfig.CameraInfo.deltaX, _infoConfig.CameraInfo.deltaY, _infoConfig.CameraInfo.deltaZ);
             };
             RTSManager.UpdateRot = (RTSInfo, quaternionRTS) =>
             {
                 Quaternion quaternionTemp = new Quaternion(quaternionRTS.x, -quaternionRTS.y, -quaternionRTS.z, quaternionRTS.w);
-                RTSInfo.useRTSGO.transform.localEulerAngles = new Vector3(quaternionTemp.eulerAngles.x + _infoConfig.CameraInfo.deltaRotX,
-                    quaternionTemp.eulerAngles.y + _infoConfig.CameraInfo.deltaRotY, quaternionTemp.eulerAngles.z + _infoConfig.CameraInfo.deltaRotZ);
+                RTSInfo.useRTSGO.transform.localEulerAngles = new Vector3(quaternionTemp.eulerAngles.x * _infoConfig.CameraInfo.deltaXRotDirection,
+                    quaternionTemp.eulerAngles.y * _infoConfig.CameraInfo.deltaYRotDirection, quaternionTemp.eulerAngles.z * _infoConfig.CameraInfo.deltaZRotDirection) + new Vector3(_infoConfig.CameraInfo.deltaRotX, _infoConfig.CameraInfo.deltaRotY, _infoConfig.CameraInfo.deltaRotZ);
             };
             RTSManager.UpdateInfo(_infoConfig);
         }

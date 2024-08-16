@@ -61,6 +61,18 @@ public struct CameraInfo
     public float frontSceneLong;
     //地面屏宽（单位：米）
     public float groundSceneWide;
+    //X轴镜像
+    public int deltaXDirection;
+    //Y轴镜像
+    public int deltaYDirection;
+    //Z轴镜像
+    public int deltaZDirection;
+    //X轴旋转镜像
+    public int deltaXRotDirection;
+    //Y轴旋转镜像
+    public int deltaYRotDirection;
+    //Z轴旋转镜像
+    public int deltaZRotDirection;
     //X轴增量
     public float deltaX;
     //Y轴增量

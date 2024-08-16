@@ -33,6 +33,12 @@ public class PlayerCreatController : MonoBehaviour
             infoConfig.CameraInfo.sideSceneLong = t.sideSceneLong;
             infoConfig.CameraInfo.frontSceneLong = t.frontSceneLong;
             infoConfig.CameraInfo.groundSceneWide = t.groundSceneWide;
+            infoConfig.CameraInfo.deltaXDirection = t.deltaXDirection;
+            infoConfig.CameraInfo.deltaYDirection = t.deltaYDirection;
+            infoConfig.CameraInfo.deltaZDirection = t.deltaZDirection;
+            infoConfig.CameraInfo.deltaXRotDirection = t.deltaXRotDirection;
+            infoConfig.CameraInfo.deltaYRotDirection = t.deltaYRotDirection;
+            infoConfig.CameraInfo.deltaZRotDirection = t.deltaZRotDirection;
             infoConfig.CameraInfo.deltaX = t.deltaX;
             infoConfig.CameraInfo.deltaY = t.deltaY;
             infoConfig.CameraInfo.deltaZ = t.deltaZ;
