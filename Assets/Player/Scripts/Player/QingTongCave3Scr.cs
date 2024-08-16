@@ -25,7 +25,7 @@ public class QingTongCave3Scr : MonoBehaviour, UpdataCamera
                 Quaternion quaternionTemp = quaternionRTS;
                 transformObj.localEulerAngles = new Vector3(quaternionTemp.eulerAngles.x * _infoConfig.CameraInfo.deltaXRotDirection,
                                 quaternionTemp.eulerAngles.y * _infoConfig.CameraInfo.deltaYRotDirection, quaternionTemp.eulerAngles.z * _infoConfig.CameraInfo.deltaZRotDirection) + new Vector3(_infoConfig.CameraInfo.deltaRotX, _infoConfig.CameraInfo.deltaRotY, _infoConfig.CameraInfo.deltaRotZ);
-            };
+            };  
 
             CMPluginThreadManager.UpdateInfo(_infoConfig);
         }
