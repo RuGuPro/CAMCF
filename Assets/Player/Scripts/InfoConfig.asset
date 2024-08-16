@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecc6071cb896cc4f9d205a806821d7a, type: 3}
+  m_Name: InfoConfig
+  m_EditorClassIdentifier: 
+  CameraInfo:
+    ipServer: 
+    port: 0
+    motionCaptureBrand: 0
+    cameraType: 0
+    allSceneHigh: 0
+    sideSceneLong: 0
+    frontSceneLong: 0
+    groundSceneWide: 0

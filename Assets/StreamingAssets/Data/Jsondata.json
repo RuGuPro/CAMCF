@@ -1,0 +1,20 @@
+{
+	"openMotionCapture":false,
+	"ipServer": "192.168.1.100",
+    "port": 3883,
+	"motionCaptureBrand": "青瞳",
+	"cameraType": "三面屏",
+	"headTag":"0",
+	"handTag":"1",
+	"open3D": true,
+	"allSceneHigh":1.92,
+	"sideSceneLong":3.2,
+	"frontSceneLong":3.2,
+	"groundSceneWide":0,
+	"deltaX":0,
+	"deltaY":-0.05,
+	"deltaZ":-1.54,
+	"deltaRotX":0,
+	"deltaRotY":0,
+	"deltaRotZ":0
+}
