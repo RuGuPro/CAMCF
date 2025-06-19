@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5775008819403476157}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 5775008819408808223}
   - component: {fileID: 5775008819408808290}
   - component: {fileID: 8563609343729930657}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Player
   m_TagString: TargetObj
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 5775008819491089610}
   - component: {fileID: 5775008819491089605}
   - component: {fileID: 3464811288577324611}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Ray Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5775008820000053057}
   - component: {fileID: 5775008820000053056}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: XR Interaction Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ GameObject:
   - component: {fileID: 5775008820373553623}
   - component: {fileID: 5775008820373553620}
   - component: {fileID: 643967280578652001}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: ForwardCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 5775008821425633174}
   - component: {fileID: 5775008821425633169}
   - component: {fileID: 5775008821425633172}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Locomotion System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

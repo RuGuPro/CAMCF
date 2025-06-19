@@ -36,5 +36,8 @@ public class RuiLiShiDaPingScr : MonoBehaviour, UpdataCamera
         ForwardCameraPerspectiveCam.top = _infoConfig.CameraInfo.allSceneHigh / 2;
         ForwardCameraPerspectiveCam.bottom = -_infoConfig.CameraInfo.allSceneHigh / 2;
         ForwardCameraPerspectiveCam.isOpen3D = _infoConfig.CameraInfo.open3D;
+        ForwardCameraPerspectiveCam.GetComponent<Camera>().stereoSeparation = _infoConfig.CameraInfo.eyeStereoSeparation;
+        ForwardCameraPerspectiveCam.GetComponent<Camera>().nearClipPlane = _infoConfig.CameraInfo.daPingUIDis;
+        ForwardCameraPerspectiveCam.GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
     }
 }

@@ -28,6 +28,8 @@ public struct JsonInformation
     public string handTag;
     //3D效果
     public bool open3D;
+    //眼间距
+    public float eyeStereoSeparation;
     //整体屏高（单位：米）
     public float allSceneHigh;
     //侧面屏长（单位：米）
@@ -60,4 +62,6 @@ public struct JsonInformation
     public float deltaRotY;
     //Z轴旋转增量
     public float deltaRotZ;
+    //大屏UI距离
+    public float daPingUIDis;
 }

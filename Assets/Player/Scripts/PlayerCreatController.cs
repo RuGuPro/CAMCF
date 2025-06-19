@@ -10,13 +10,13 @@ public class PlayerCreatController : MonoBehaviour
 
     private void Start()
     {
-        UpdateJsonInfo();
+        ReadJsonFinish(UpdateJsonInfo());
     }
 
     /// <summary>
     /// 更新Json数据
     /// </summary>
-    public void UpdateJsonInfo()
+    public InfoConfig UpdateJsonInfo()
     {
         InformatioCenter InformatioCenter = new InformatioCenter();
         InformatioCenter.ReadJson<JsonInformation>("Jsondata", (t) =>
@@ -29,6 +29,7 @@ public class PlayerCreatController : MonoBehaviour
             infoConfig.CameraInfo.headTag = t.headTag;
             infoConfig.CameraInfo.handTag = t.handTag;
             infoConfig.CameraInfo.open3D = t.open3D;
+            infoConfig.CameraInfo.eyeStereoSeparation = t.eyeStereoSeparation;
             infoConfig.CameraInfo.allSceneHigh = t.allSceneHigh;
             infoConfig.CameraInfo.sideSceneLong = t.sideSceneLong;
             infoConfig.CameraInfo.frontSceneLong = t.frontSceneLong;
@@ -45,9 +46,10 @@ public class PlayerCreatController : MonoBehaviour
             infoConfig.CameraInfo.deltaRotX = t.deltaRotX;
             infoConfig.CameraInfo.deltaRotY = t.deltaRotY;
             infoConfig.CameraInfo.deltaRotZ = t.deltaRotZ;
-
-            ReadJsonFinish(infoConfig);
+            infoConfig.CameraInfo.daPingUIDis = t.daPingUIDis;
         });
+
+        return infoConfig;
     }
 
     /// <summary>
@@ -55,7 +57,21 @@ public class PlayerCreatController : MonoBehaviour
     /// </summary>
     public void DeletCurPlayer()
     {
-        Destroy(this.transform.Find("Player").gameObject);
+        if (this.transform.Find("Player"))
+        {
+#if UNITY_EDITOR
+            if (Application.isPlaying)
+            {
+                Destroy(this.transform.Find("Player").gameObject);
+            }
+            else
+            {
+                DestroyImmediate(this.transform.Find("Player").gameObject);
+            }
+#else
+            Destroy(this.transform.Find("Player").gameObject);
+#endif
+        }
     }
 
     /// <summary>
@@ -123,13 +139,19 @@ public class PlayerCreatController : MonoBehaviour
     IEnumerator LoadObjOver(string _path, Action<GameObject> endEvent = null)
     {
         ResourceRequest rq = Resources.LoadAsync<GameObject>(_path);
+
+#if UNITY_EDITOR
         Debug.Log(Time.frameCount);
+#endif
         yield return rq;
         GameObject perfab = rq.asset as GameObject;
         GameObject obj = Instantiate(perfab, this.transform);
         obj.name = "Player";
         obj.transform.localPosition = new Vector3(0, 0, 0);
+
+#if UNITY_EDITOR
         Debug.Log(Time.frameCount);
+#endif
         endEvent?.Invoke(obj);
     }
 
@@ -137,5 +159,10 @@ public class PlayerCreatController : MonoBehaviour
     {
         DeletCurPlayer();
         CreatPlayer(_infoConfig, endEvent);
+    }
+
+    public void EditorInitStart(Action<GameObject> endEvent)
+    {
+        ReadJsonFinish(UpdateJsonInfo(), endEvent);
     }
 }

@@ -20,6 +20,68 @@ public class CamManagerScr : MonoBehaviour
 
     void Update()
     {
+        UpdateInfo();
+    }
+
+    public void UpdateInfo(InfoConfig _infoConfig)
+    {
+        frontSceneLong = _infoConfig.CameraInfo.frontSceneLong;
+        sideSceneLong = _infoConfig.CameraInfo.sideSceneLong;
+        allSceneHigh = _infoConfig.CameraInfo.allSceneHigh;
+        groundSceneWide = _infoConfig.CameraInfo.groundSceneWide;
+        ForwardCam.isOpen3D = _infoConfig.CameraInfo.open3D;
+        LeftCam.isOpen3D = _infoConfig.CameraInfo.open3D;
+        RightCam.isOpen3D = _infoConfig.CameraInfo.open3D;
+        if (GroundCam)
+        {
+            GroundCam.isOpen3D = _infoConfig.CameraInfo.open3D;
+        }
+
+        //屏幕分布
+        float allLong = sideSceneLong * 2 + frontSceneLong;
+        if (GroundCam)
+        {
+            allLong += frontSceneLong;
+        }
+
+        float sideScenePer = Mathf.Round((sideSceneLong / allLong) * 10000) / 10000;
+        float frontScenePer = Mathf.Round((frontSceneLong / allLong) * 10000) / 10000;
+
+        ForwardCam.GetComponent<Camera>().stereoSeparation = _infoConfig.CameraInfo.eyeStereoSeparation;
+        LeftCam.GetComponent<Camera>().stereoSeparation = _infoConfig.CameraInfo.eyeStereoSeparation;
+        RightCam.GetComponent<Camera>().stereoSeparation = _infoConfig.CameraInfo.eyeStereoSeparation;
+
+        if (GroundCam)
+        {
+            GroundCam.GetComponent<Camera>().stereoSeparation = _infoConfig.CameraInfo.eyeStereoSeparation;
+        }
+
+        if (_infoConfig.CameraInfo.open3D)
+        {
+            ForwardCam.GetComponent<Camera>().rect = new Rect(sideScenePer, 0, frontScenePer - 0.00001f, 1);
+            LeftCam.GetComponent<Camera>().rect = new Rect(0, 0, sideScenePer, 1);
+            RightCam.GetComponent<Camera>().rect = new Rect((sideScenePer + frontScenePer), 0, sideScenePer, 1);
+            if (GroundCam)
+            {
+                GroundCam.GetComponent<Camera>().rect = new Rect((sideScenePer + frontScenePer + sideScenePer), 0, frontScenePer, 1);
+            }
+        }
+        else
+        {
+            ForwardCam.GetComponent<Camera>().rect = new Rect(sideScenePer, 0, frontScenePer, 1);
+            LeftCam.GetComponent<Camera>().rect = new Rect(0, 0, sideScenePer, 1);
+            RightCam.GetComponent<Camera>().rect = new Rect((sideScenePer + frontScenePer), 0, sideScenePer, 1);
+            if (GroundCam)
+            {
+                GroundCam.GetComponent<Camera>().rect = new Rect((sideScenePer + frontScenePer + sideScenePer), 0, frontScenePer, 1);
+            }
+        }
+
+        UpdateInfo();
+    }
+
+    public void UpdateInfo()
+    {
         if (eyeLock)
         {
             //前摄像机值
@@ -88,52 +150,6 @@ public class CamManagerScr : MonoBehaviour
                 GroundCam.right = (frontSceneLong / 2 - pos.x) / 10;
                 GroundCam.top = (groundSceneWide / 2 - pos.z + (sideSceneLong - groundSceneWide) / 2) / 10;
                 GroundCam.bottom = (-(groundSceneWide / 2 + pos.z - (sideSceneLong - groundSceneWide) / 2)) / 10;
-            }
-        }
-    }
-
-    public void UpdateInfo(InfoConfig _infoConfig)
-    {
-        frontSceneLong = _infoConfig.CameraInfo.frontSceneLong;
-        sideSceneLong = _infoConfig.CameraInfo.sideSceneLong;
-        allSceneHigh = _infoConfig.CameraInfo.allSceneHigh;
-        groundSceneWide = _infoConfig.CameraInfo.groundSceneWide;
-        ForwardCam.isOpen3D = _infoConfig.CameraInfo.open3D;
-        LeftCam.isOpen3D = _infoConfig.CameraInfo.open3D;
-        RightCam.isOpen3D = _infoConfig.CameraInfo.open3D;
-        if (GroundCam)
-        {
-            GroundCam.isOpen3D = _infoConfig.CameraInfo.open3D;
-        }
-
-        //屏幕分布
-        float allLong = sideSceneLong * 2 + frontSceneLong;
-        if (GroundCam)
-        {
-            allLong += frontSceneLong;
-        }
-
-        float sideScenePer = Mathf.Round((sideSceneLong / allLong) * 10000) / 10000;
-        float frontScenePer = Mathf.Round((frontSceneLong / allLong) * 10000) / 10000;
-
-        if (_infoConfig.CameraInfo.open3D)
-        {
-            ForwardCam.GetComponent<Camera>().rect = new Rect(sideScenePer, 0, frontScenePer - 0.00001f, 1);
-            LeftCam.GetComponent<Camera>().rect = new Rect(0, 0, sideScenePer, 1);
-            RightCam.GetComponent<Camera>().rect = new Rect((sideScenePer + frontScenePer), 0, sideScenePer, 1);
-            if (GroundCam)
-            {
-                GroundCam.GetComponent<Camera>().rect = new Rect((sideScenePer + frontScenePer + sideScenePer), 0, frontScenePer, 1);
-            }
-        }
-        else
-        {
-            ForwardCam.GetComponent<Camera>().rect = new Rect(sideScenePer, 0, frontScenePer, 1);
-            LeftCam.GetComponent<Camera>().rect = new Rect(0, 0, sideScenePer, 1);
-            RightCam.GetComponent<Camera>().rect = new Rect((sideScenePer + frontScenePer), 0, sideScenePer, 1);
-            if (GroundCam)
-            {
-                GroundCam.GetComponent<Camera>().rect = new Rect((sideScenePer + frontScenePer + sideScenePer), 0, frontScenePer, 1);
             }
         }
     }
